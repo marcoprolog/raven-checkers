@@ -9,6 +9,7 @@ from playercontroller import PlayerController
 from alphabetacontroller import AlphaBetaController
 from gamepersist import SavedGame
 from textserialize import Serializer
+import numpy
 
 class GameManager(object):
     def __init__(self, **props):
@@ -200,6 +201,21 @@ class GameManager(object):
             self._controller2.end_turn() # end White's turn
             self._root.update()
             self.view.update_statusbar()
+
+            # calculate utility value for valence
+            valence = self.model.curr_state.utility(BLACK);
+            #calculate how many moves are possible (maybe also utility variance for them)
+            captures = self.model.captures_available()
+            if captures:
+                arousal = len(captures)
+            else:
+                list = []
+                for (a, s) in self.model.successors(self.model.curr_state):
+                    util = self.model.utility(BLACK,s)
+                    list.append(util)
+                arr = numpy.array(list)
+                arousal = numpy.std(arr, axis=0)
+
             self._controller1.start_turn() # begin Black's turn
         else:
             self._controller1.end_turn() # end Black's turn
