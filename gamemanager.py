@@ -11,6 +11,7 @@ from gamepersist import SavedGame
 from textserialize import Serializer
 import numpy
 import tcp_client
+import datetime
 
 class GameManager(object):
     def __init__(self, **props):
@@ -230,9 +231,15 @@ class GameManager(object):
             arousal = numpy.std(arr, axis=0)
             arousal = self.convert_in_hundreds(arousal, 0, 4)
             print("arousal=",arousal)
-            
+
             #send new mood to metacompose
-            metacompose_change_mood(valence,arousal)
+            #tcp_client.metacompose_change_mood(valence,arousal)
+
+            #save in log
+            with open('log.txt', 'a') as file:
+                file.write("'{}',{},{}".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+            with open('moves.txt', 'a') as file:
+                file.write("'{}',{}".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
 
             self._controller1.start_turn() # begin Black's turn
         else:
