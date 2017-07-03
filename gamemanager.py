@@ -200,9 +200,9 @@ class GameManager(object):
 
     def convert_in_hundreds(self, value, mn, mx):
         if (value < mn):
-            return mn
+            return 0
         if (value > mx):
-            return mx
+            return 100
         oldRange = (mx-mn)
         newRange = (100-0)
         newValue = (((value - mn)*newRange) / oldRange) + 0
@@ -229,17 +229,17 @@ class GameManager(object):
                 list.append(util)
             arr = numpy.array(list)
             arousal = numpy.std(arr, axis=0)
-            arousal = self.convert_in_hundreds(arousal, 0, 4)
+            arousal = self.convert_in_hundreds(arousal, 0, 3)
             print("arousal=",arousal)
 
             #send new mood to metacompose
-            #tcp_client.metacompose_change_mood(valence,arousal)
+            tcp_client.metacompose_change_mood(valence,arousal)
 
             #save in log
             with open('log.txt', 'a') as file:
-                file.write("'{}',{},{}".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+                file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
             with open('moves.txt', 'a') as file:
-                file.write("'{}',{}".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
+                file.write("'{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
 
             self._controller1.start_turn() # begin Black's turn
         else:
