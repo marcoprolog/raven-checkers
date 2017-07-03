@@ -10,6 +10,7 @@ from setupboard import SetupBoard
 from gamemanager import GameManager
 from centeredwindow import CenteredWindow
 from prefdlg import PreferencesDialog
+import tcp_client
 
 class MainFrame(object, CenteredWindow):
     def __init__(self, master):
@@ -27,8 +28,12 @@ class MainFrame(object, CenteredWindow):
         self.root.config(menu=self.menubar)
         CenteredWindow.__init__(self, self.root)
         self.root.deiconify()
+        tcp_client.metacompose_start()
+        tcp_client.metacompose_change_composition("checkers0")
+        tcp_client.metacompose_change_mood(100,0)
 
     def _on_close(self):
+        tcp_client.metacompose_stop()
         if self.manager.view.is_dirty():
             msg = 'Do you want to save your changes before exiting?'
             result = askyesnocancel(TITLE, msg)
