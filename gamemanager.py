@@ -10,6 +10,7 @@ from alphabetacontroller import AlphaBetaController
 from gamepersist import SavedGame
 from textserialize import Serializer
 import numpy
+import tcp_client
 
 class GameManager(object):
     def __init__(self, **props):
@@ -196,6 +197,16 @@ class GameManager(object):
         except IOError:
             showerror(PROGRAM_TITLE, 'Could not save file.')
 
+    def convert_in_hundreds(self, value, mn, mx):
+        if (value < mn):
+            return mn
+        if (value > mx):
+            return mx
+        oldRange = (mx-mn)
+        newRange = (100-0)
+        newValue = (((value - mn)*newRange) / oldRange) + 0
+        return int(newValue)
+
     def turn_finished(self):
         if self.model.curr_state.to_move == BLACK:
             self._controller2.end_turn() # end White's turn
@@ -203,18 +214,25 @@ class GameManager(object):
             self.view.update_statusbar()
 
             # calculate utility value for valence
-            valence = self.model.curr_state.utility(BLACK);
+            #less than -200 is definitely bad, 0 best value
+            valence = self.model.curr_state.utility(BLACK)
+            valence = self.convert_in_hundreds(valence, -200, 0)
+            print("valence=", valence)
+
             #calculate how many moves are possible (maybe also utility variance for them)
-            captures = self.model.captures_available()
-            if captures:
-                arousal = len(captures)
-            else:
-                list = []
-                for (a, s) in self.model.successors(self.model.curr_state):
-                    util = self.model.utility(BLACK,s)
-                    list.append(util)
-                arr = numpy.array(list)
-                arousal = numpy.std(arr, axis=0)
+            #capture should evaluate variance of utility as well, otherwise inconsistent
+            #a variance of 4 seems pretty high, should probably se as maximum
+            list = []
+            for (a, s) in self.model.successors(self.model.curr_state):
+                util = self.model.utility(BLACK, s)
+                list.append(util)
+            arr = numpy.array(list)
+            arousal = numpy.std(arr, axis=0)
+            arousal = self.convert_in_hundreds(arousal, 0, 4)
+            print("arousal=",arousal)
+            
+            #send new mood to metacompose
+            metacompose_change_mood(valence,arousal)
 
             self._controller1.start_turn() # begin Black's turn
         else:
@@ -222,3 +240,4 @@ class GameManager(object):
             self._root.update()
             self.view.update_statusbar()
             self._controller2.start_turn() # begin White's turn
+
