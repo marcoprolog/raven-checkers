@@ -258,14 +258,19 @@ class GameManager(object):
                 with open(experiment+'-'+id+'.txt', 'a') as file:
                     file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
 
-            #regrdless of experiment save moves
+            #regrdless of experiment save state
             with open(experiment+'-'+id+'-moves.txt', 'a') as file:
-                file.write("'{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
+                file.write("'{}','{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 'turn-start', self.model.curr_state))
 
             self._controller1.start_turn() # begin Black's turn
         else:
             self._controller1.end_turn() # end Black's turn
             self._root.update()
             self.view.update_statusbar()
+
+            # regrdless of experiment save moves
+            with open(experiment+'-'+id+'-moves.txt', 'a') as file:
+                file.write("'{}','{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 'turn-end', self.model.curr_state))
+
             self._controller2.start_turn() # begin White's turn
 
