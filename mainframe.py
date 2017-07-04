@@ -11,6 +11,7 @@ from gamemanager import GameManager
 from centeredwindow import CenteredWindow
 from prefdlg import PreferencesDialog
 import tcp_client
+import sys
 
 class MainFrame(object, CenteredWindow):
     def __init__(self, master):
@@ -28,9 +29,15 @@ class MainFrame(object, CenteredWindow):
         self.root.config(menu=self.menubar)
         CenteredWindow.__init__(self, self.root)
         self.root.deiconify()
+
+        #metacompose start
         tcp_client.metacompose_start()
         tcp_client.metacompose_change_composition("checkers0")
         tcp_client.metacompose_change_mood(100,0)
+
+    def experiment(self):
+        global experiment
+        return experiment
 
     def _on_close(self):
         tcp_client.metacompose_stop()

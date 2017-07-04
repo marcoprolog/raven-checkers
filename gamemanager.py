@@ -29,6 +29,14 @@ class GameManager(object):
         self._controller1.start_turn()
         self.filename = None
 
+        #this gets argument, going to use it to set up experiment type
+        global experiment
+        if len(sys.argv) == 0:
+            experiment = sys.argv.pop()
+        else:
+            experiment = "1"
+        print experiment
+
     def set_controllers(self):
         think_time = self.parent.thinkTime.get()
         if self.num_players == 0:
@@ -214,30 +222,37 @@ class GameManager(object):
             self._root.update()
             self.view.update_statusbar()
 
-            # calculate utility value for valence
-            #less than -200 is definitely bad, 0 best value
-            valence = self.model.curr_state.utility(BLACK)
-            valence = self.convert_in_hundreds(valence, -200, 0)
-            print("valence=", valence)
+            #Check experiment code
+            #0: control group, static music
+            #1: supporting group
+            global experiment
+            if (experiment != "0"):
+                # calculate utility value for valence
+                #less than -200 is definitely bad, 0 best value
+                valence = self.model.curr_state.utility(BLACK)
+                valence = self.convert_in_hundreds(valence, -200, 0)
+                print("valence=", valence)
 
-            #calculate how many moves are possible (maybe also utility variance for them)
-            #capture should evaluate variance of utility as well, otherwise inconsistent
-            #a variance of 4 seems pretty high, should probably se as maximum
-            list = []
-            for (a, s) in self.model.successors(self.model.curr_state):
-                util = self.model.utility(BLACK, s)
-                list.append(util)
-            arr = numpy.array(list)
-            arousal = numpy.std(arr, axis=0)
-            arousal = self.convert_in_hundreds(arousal, 0, 3)
-            print("arousal=",arousal)
+                #calculate how many moves are possible (maybe also utility variance for them)
+                #capture should evaluate variance of utility as well, otherwise inconsistent
+                #a variance of 4 seems pretty high, should probably se as maximum
+                list = []
+                for (a, s) in self.model.successors(self.model.curr_state):
+                    util = self.model.utility(BLACK, s)
+                    list.append(util)
+                arr = numpy.array(list)
+                arousal = numpy.std(arr, axis=0)
+                arousal = self.convert_in_hundreds(arousal, 0, 3)
+                print("arousal=",arousal)
 
-            #send new mood to metacompose
-            tcp_client.metacompose_change_mood(valence,arousal)
+                #send new mood to metacompose
+                tcp_client.metacompose_change_mood(valence,arousal)
 
-            #save in log
-            with open('log.txt', 'a') as file:
-                file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+                #save in log
+                with open('log.txt', 'a') as file:
+                    file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+
+            #regrdless of experiment save moves
             with open('moves.txt', 'a') as file:
                 file.write("'{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
 
