@@ -12,6 +12,7 @@ from textserialize import Serializer
 import numpy
 import tcp_client
 import datetime
+import uuid
 
 class GameManager(object):
     def __init__(self, **props):
@@ -36,6 +37,10 @@ class GameManager(object):
         else:
             experiment = "1"
         print experiment
+
+        #create UUID for log saving
+        global id
+        id = str(uuid.uuid4())
 
     def set_controllers(self):
         think_time = self.parent.thinkTime.get()
@@ -226,6 +231,7 @@ class GameManager(object):
             #0: control group, static music
             #1: supporting group
             global experiment
+            global id
             if (experiment != "0"):
                 # calculate utility value for valence
                 #less than -200 is definitely bad, 0 best value
@@ -249,11 +255,11 @@ class GameManager(object):
                 tcp_client.metacompose_change_mood(valence,arousal)
 
                 #save in log
-                with open('log.txt', 'a') as file:
+                with open(experiment+'-'+id+'.txt', 'a') as file:
                     file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
 
             #regrdless of experiment save moves
-            with open('moves.txt', 'a') as file:
+            with open(experiment+'-'+id+'-moves.txt', 'a') as file:
                 file.write("'{}',{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.model.curr_state))
 
             self._controller1.start_turn() # begin Black's turn
