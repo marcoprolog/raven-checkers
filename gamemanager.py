@@ -32,15 +32,17 @@ class GameManager(object):
 
         #this gets argument, going to use it to set up experiment type
         global experiment
-        if len(sys.argv) == 0:
+        global id
+        if len(sys.argv) != 0:
+            id = sys.argv.pop()
             experiment = sys.argv.pop()
         else:
             experiment = "1"
+            # create UUID for log saving
+            id = str(uuid.uuid4())
         print experiment
+        print id
 
-        #create UUID for log saving
-        global id
-        id = str(uuid.uuid4())
 
     def set_controllers(self):
         think_time = self.parent.thinkTime.get()
