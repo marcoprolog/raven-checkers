@@ -30,11 +30,6 @@ class MainFrame(object, CenteredWindow):
         CenteredWindow.__init__(self, self.root)
         self.root.deiconify()
 
-        #metacompose start
-        tcp_client.metacompose_start()
-        tcp_client.metacompose_change_composition("checkers0")
-        tcp_client.metacompose_change_mood(100,0)
-
     def experiment(self):
         global experiment
         return experiment
