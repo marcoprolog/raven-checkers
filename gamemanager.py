@@ -43,6 +43,12 @@ class GameManager(object):
         print experiment
         print id
 
+        #metacompose start
+        tcp_client.metacompose_start()
+        #tcp_client.metacompose_change_composition("checkers0")
+        tcp_client.metacompose_change_composition(id)
+        tcp_client.metacompose_change_mood(100,0)
+
 
     def set_controllers(self):
         think_time = self.parent.thinkTime.get()
