@@ -33,7 +33,7 @@ class GameManager(object):
         #this gets argument, going to use it to set up experiment type
         global experiment
         global id
-        if len(sys.argv) != 0:
+        if len(sys.argv) > 1:
             id = sys.argv.pop()
             experiment = sys.argv.pop()
         else:
@@ -237,8 +237,10 @@ class GameManager(object):
             if (experiment != "0"):
                 # calculate utility value for valence
                 #less than -200 is definitely bad, 0 best value
+                print("util black=", self.model.curr_state.utility(BLACK))
+                print("util white=", self.model.curr_state.utility(WHITE))
                 valence = self.model.curr_state.utility(BLACK)
-                valence = self.convert_in_hundreds(valence, -200, 0)
+                valence = self.convert_in_hundreds(valence, -200, 200)
                 print("valence=", valence)
 
                 #calculate how many moves are possible (maybe also utility variance for them)
@@ -247,6 +249,10 @@ class GameManager(object):
                 list = []
                 for (a, s) in self.model.successors(self.model.curr_state):
                     util = self.model.utility(BLACK, s)
+                    if (util < -200):
+                        util = -200
+                    if (util > 200):
+                        util = 200
                     list.append(util)
                 arr = numpy.array(list)
                 arousal = numpy.std(arr, axis=0)
