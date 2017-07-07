@@ -223,6 +223,20 @@ class GameManager(object):
         newValue = (((value - mn)*newRange) / oldRange) + 0
         return int(newValue)
 
+    def calculate_arousal(self, state):
+        list = []
+        for (a, s) in self.model.successors(state):
+            util = self.model.utility(BLACK, s)
+            if (util < -200):
+                util = -200
+            if (util > 200):
+                util = 200
+            list.append(util)
+        arr = numpy.array(list)
+        arousal = numpy.std(arr, axis=0)
+        arousal = self.convert_in_hundreds(arousal, 0, 3)
+        return  arousal
+
     def turn_finished(self):
         if self.model.curr_state.to_move == BLACK:
             self._controller2.end_turn() # end White's turn
@@ -245,18 +259,26 @@ class GameManager(object):
 
                 #calculate how many moves are possible (maybe also utility variance for them)
                 #capture should evaluate variance of utility as well, otherwise inconsistent
+                if len(self.model.captures_available()) != 0:
+                    list = []
+                    for (a, s) in self.model.successors(self.model.curr_state):
+                        ar = self.calculate_arousal(s)
+                        list.append(ar)
+                    arousal = numpy.mean(list, axis=0)
+                    arousal = int(arousal)
                 #a variance of 4 seems pretty high, should probably se as maximum
-                list = []
-                for (a, s) in self.model.successors(self.model.curr_state):
-                    util = self.model.utility(BLACK, s)
-                    if (util < -200):
-                        util = -200
-                    if (util > 200):
-                        util = 200
-                    list.append(util)
-                arr = numpy.array(list)
-                arousal = numpy.std(arr, axis=0)
-                arousal = self.convert_in_hundreds(arousal, 0, 3)
+                else:
+                    list = []
+                    for (a, s) in self.model.successors(self.model.curr_state):
+                        util = self.model.utility(BLACK, s)
+                        if (util < -200):
+                            util = -200
+                        if (util > 200):
+                            util = 200
+                        list.append(util)
+                    arr = numpy.array(list)
+                    arousal = numpy.std(arr, axis=0)
+                    arousal = self.convert_in_hundreds(arousal, 0, 3)
                 print("arousal=",arousal)
 
                 #send new mood to metacompose
