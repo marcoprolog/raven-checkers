@@ -13,6 +13,7 @@ import numpy
 import tcp_client
 import datetime
 import uuid
+import random
 
 class GameManager(object):
     def __init__(self, **props):
@@ -37,7 +38,7 @@ class GameManager(object):
             id = sys.argv.pop()
             experiment = sys.argv.pop()
         else:
-            experiment = "1"
+            experiment = "2"
             # create UUID for log saving
             id = str(uuid.uuid4())
         print experiment
@@ -254,7 +255,7 @@ class GameManager(object):
             #1: supporting group
             global experiment
             global id
-            if (experiment != "0"):
+            if (experiment == "1"):
                 # calculate utility value for valence
                 #less than -200 is definitely bad, 0 best value
                 print("util black=", self.model.curr_state.utility(BLACK))
@@ -293,6 +294,16 @@ class GameManager(object):
                 #save in log
                 with open(experiment+'-'+id+'.txt', 'a') as file:
                     file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+
+            if (experiment == "2"): #2 being the group with random expression
+                valence = random.randint(0,100)
+                arousal = random.randint(0, 100)
+                # send new mood to metacompose
+                tcp_client.metacompose_change_mood(valence, arousal)
+                # save in log
+                with open(experiment + '-' + id + '.txt', 'a') as file:
+                    file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence, arousal,
+                                              self.model.curr_state))
 
             #regrdless of experiment save state
             with open(experiment+'-'+id+'-moves.txt', 'a') as file:
