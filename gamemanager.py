@@ -258,11 +258,11 @@ class GameManager(object):
             if (experiment == "1"):
                 # calculate utility value for valence
                 #less than -200 is definitely bad, 0 best value
-                print("util black=", self.model.curr_state.utility(BLACK))
-                print("util white=", self.model.curr_state.utility(WHITE))
+                #print("util black=", self.model.curr_state.utility(BLACK))
+                #print("util white=", self.model.curr_state.utility(WHITE))
                 valence = self.model.curr_state.utility(BLACK)
                 valence = self.convert_in_hundreds(valence, -200, 200)
-                print("valence=", valence)
+                #print("valence=", valence)
 
                 #calculate how many moves are possible (maybe also utility variance for them)
                 #capture should evaluate variance of utility as well, otherwise inconsistent
@@ -286,7 +286,7 @@ class GameManager(object):
                     arr = numpy.array(list)
                     arousal = numpy.std(arr, axis=0)
                     arousal = self.convert_in_hundreds(arousal, 0, 3)
-                print("arousal=",arousal)
+                #print("arousal=",arousal)
 
                 #send new mood to metacompose
                 tcp_client.metacompose_change_mood(valence,arousal)
