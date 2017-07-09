@@ -38,7 +38,7 @@ class GameManager(object):
             id = sys.argv.pop()
             experiment = sys.argv.pop()
         else:
-            experiment = "2"
+            experiment = "1"
             # create UUID for log saving
             id = str(uuid.uuid4())
         print experiment
@@ -253,6 +253,7 @@ class GameManager(object):
             #Check experiment code
             #0: control group, static music
             #1: supporting group
+            #2: random group
             global experiment
             global id
             if (experiment == "1"):
