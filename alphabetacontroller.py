@@ -104,31 +104,40 @@ def calc_move(model, table, search_time, term_event, child_conn):
     move = None
     term_event.clear()
     captures = model.captures_available()
-    if captures:
+    #Chose random move with a 10% chance
+    if random.random() < 0.08:
         time.sleep(0.7)
-        move = longest_of(captures)
+        moves = model.curr_state.moves
+        choice = random.randint(0,len(moves)-1)
+        move = moves[choice]
+
     else:
-        depth = 0
-        start_time = time.time()
-        curr_time = start_time
-        checkpoint = start_time
-        model_copy = copy.deepcopy(model)
-        while 1:
-            depth += 1
-            table.set_hash_move(depth, -1)
-            move = games.alphabeta_search(model_copy.curr_state,
-                                          model_copy,
-                                          depth)
-            checkpoint = curr_time
-            curr_time = time.time()
-            rem_time = search_time - (curr_time - checkpoint)
-            if term_event.is_set(): # a signal means terminate
-                term_event.clear()
-                move = None
-                break
-            if (curr_time - start_time > search_time or
-               ((curr_time - checkpoint) * 2) > rem_time or
-               depth > MAXDEPTH):
-                break
+        if captures:
+            time.sleep(0.7)
+            move = longest_of(captures)
+        else:
+            depth = 0
+            start_time = time.time()
+            curr_time = start_time
+            checkpoint = start_time
+            model_copy = copy.deepcopy(model)
+            while 1:
+                depth += 1
+                table.set_hash_move(depth, -1)
+                move = games.alphabeta_search(model_copy.curr_state,
+                                              model_copy,
+                                              depth)
+                checkpoint = curr_time
+                curr_time = time.time()
+                rem_time = search_time - (curr_time - checkpoint)
+                if term_event.is_set(): # a signal means terminate
+                    term_event.clear()
+                    move = None
+                    break
+                if (curr_time - start_time > search_time or
+                   ((curr_time - checkpoint) * 2) > rem_time or
+                   depth > MAXDEPTH):
+                    break
+    time.sleep(2 * random.random() + 1)
     child_conn.send(move)
     #model.curr_state.ok_to_move = True
