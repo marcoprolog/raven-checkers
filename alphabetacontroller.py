@@ -104,17 +104,17 @@ def calc_move(model, table, search_time, term_event, child_conn):
     move = None
     term_event.clear()
     captures = model.captures_available()
-    #Chose random move with a 10% chance
-    if random.random() < 0.08:
+    if captures:
         time.sleep(0.7)
-        moves = model.curr_state.moves
-        choice = random.randint(0,len(moves)-1)
-        move = moves[choice]
+        move = longest_of(captures)
 
     else:
-        if captures:
+        # Chose random move with a 10% chance
+        if random.random() < 0.08:
             time.sleep(0.7)
-            move = longest_of(captures)
+            moves = model.curr_state.moves
+            choice = random.randint(0, len(moves) - 1)
+            move = moves[choice]
         else:
             depth = 0
             start_time = time.time()
