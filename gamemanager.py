@@ -13,6 +13,7 @@ import numpy
 import tcp_client
 import datetime
 import uuid
+import random
 
 class GameManager(object):
     def __init__(self, **props):
@@ -229,6 +230,20 @@ class GameManager(object):
         newValue = (((value - mn)*newRange) / oldRange) + 0
         return int(newValue)
 
+    def calculate_arousal(self, state):
+        list = []
+        for (a, s) in self.model.successors(state):
+            util = self.model.utility(BLACK, s)
+            if (util < -200):
+                util = -200
+            if (util > 200):
+                util = 200
+            list.append(util)
+        arr = numpy.array(list)
+        arousal = numpy.std(arr, axis=0)
+        arousal = self.convert_in_hundreds(arousal, 0, 3)
+        return  arousal
+
     def turn_finished(self):
         if self.model.curr_state.to_move == BLACK:
             self._controller2.end_turn() # end White's turn
@@ -238,20 +253,29 @@ class GameManager(object):
             #Check experiment code
             #0: control group, static music
             #1: supporting group
+            #2: random group
             global experiment
             global id
-            if (experiment != "0"):
-                # calculate utility value for valence
-                #less than -200 is definitely bad, 0 best value
-                print("util black=", self.model.curr_state.utility(BLACK))
-                print("util white=", self.model.curr_state.utility(WHITE))
-                valence = self.model.curr_state.utility(BLACK)
-                valence = self.convert_in_hundreds(valence, -200, 200)
-                print("valence=", valence)
 
-                #calculate how many moves are possible (maybe also utility variance for them)
-                #capture should evaluate variance of utility as well, otherwise inconsistent
-                #a variance of 4 seems pretty high, should probably se as maximum
+            # calculate utility value for valence
+            # less than -200 is definitely bad, 0 best value
+            # print("util black=", self.model.curr_state.utility(BLACK))
+            # print("util white=", self.model.curr_state.utility(WHITE))
+            valence = self.model.curr_state.utility(BLACK)
+            valence = self.convert_in_hundreds(valence, -200, 200)
+            # print("valence=", valence)
+
+            # calculate how many moves are possible (maybe also utility variance for them)
+            # capture should evaluate variance of utility as well, otherwise inconsistent
+            if len(self.model.captures_available()) != 0:
+                list = []
+                for (a, s) in self.model.successors(self.model.curr_state):
+                    ar = self.calculate_arousal(s)
+                    list.append(ar)
+                arousal = numpy.mean(list, axis=0)
+                arousal = int(arousal)
+            # a variance of 4 seems pretty high, should probably se as maximum
+            else:
                 list = []
                 for (a, s) in self.model.successors(self.model.curr_state):
                     util = self.model.utility(BLACK, s)
@@ -263,14 +287,27 @@ class GameManager(object):
                 arr = numpy.array(list)
                 arousal = numpy.std(arr, axis=0)
                 arousal = self.convert_in_hundreds(arousal, 0, 3)
-                print("arousal=",arousal)
+                # print("arousal=",arousal)
 
+            # save in log
+            with open(experiment + '-' + id + '.txt', 'a') as file:
+                file.write(
+                    "'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence, arousal,
+                                          self.model.curr_state))
+
+            if (experiment == "1"):
                 #send new mood to metacompose
                 tcp_client.metacompose_change_mood(valence,arousal)
 
-                #save in log
-                with open(experiment+'-'+id+'.txt', 'a') as file:
-                    file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence,arousal,self.model.curr_state))
+            if (experiment == "2"): #2 being the group with random expression
+                valence = random.randint(0,100)
+                arousal = random.randint(0, 100)
+                # send new mood to metacompose
+                tcp_client.metacompose_change_mood(valence, arousal)
+                # save in log
+                with open(experiment + '-' + id + '-random.txt', 'a') as file:
+                    file.write("'{}',{},{}\n".format(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), valence, arousal,
+                                              self.model.curr_state))
 
             #regrdless of experiment save state
             with open(experiment+'-'+id+'-moves.txt', 'a') as file:
