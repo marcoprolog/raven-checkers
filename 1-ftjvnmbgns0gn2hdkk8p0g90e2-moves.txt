@@ -1,0 +1,500 @@
+'2017-08-07 11:26:31','turn-end',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   w   w   w
+6   w   w   w   w
+5 .   .   .   .
+4   .   .   b   .
+3 b   b   b   .
+2   b   b   b   b
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:33','turn-start',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   w   w   w
+6   .   w   w   w
+5 w   .   .   .
+4   .   .   b   .
+3 b   b   b   .
+2   b   b   b   b
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:35','turn-end',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   w   w   w
+6   .   w   w   w
+5 w   .   .   .
+4   .   .   b   .
+3 b   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:37','turn-start',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   .   w   w
+6   w   w   w   w
+5 w   .   .   .
+4   .   .   b   .
+3 b   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:42','turn-end',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   .   w   w
+6   w   w   w   w
+5 w   .   .   .
+4   b   .   b   .
+3 .   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:44','turn-start',[b=12 w=12 (+0)]
+8   w   w   w   w
+7 w   .   w   w
+6   w   .   w   w
+5 w   .   w   .
+4   b   .   b   .
+3 .   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:26:55','turn-end',[b=12 w=11 (+1)]
+8   w   w   w   w
+7 w   .   w   w
+6   w   b   w   w
+5 w   .   .   .
+4   b   .   .   .
+3 .   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:00','turn-start',[b=10 w=11 (-1)]
+8   w   w   w   w
+7 w   .   .   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   .
+3 w   b   b   b
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:05','turn-end',[b=10 w=11 (-1)]
+8   w   w   w   w
+7 w   .   .   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   .
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:08','turn-start',[b=10 w=11 (-1)]
+8   .   w   w   w
+7 w   w   .   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   .
+2   b   b   b   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:12','turn-end',[b=10 w=11 (-1)]
+8   .   w   w   w
+7 w   w   .   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   .   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:15','turn-start',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   w   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   .   .
+1 b   b   b   b
+  a b c d e f g h
+'2017-08-07 11:27:16','turn-end',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   w   w
+6   w   .   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   b   .
+1 b   b   .   b
+  a b c d e f g h
+'2017-08-07 11:27:19','turn-start',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   w   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   b   .
+1 b   b   .   b
+  a b c d e f g h
+'2017-08-07 11:27:20','turn-end',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   w   w   w
+5 w   .   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   b   b
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:22','turn-start',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   .   w   w
+5 w   w   .   .
+4   .   .   .   b
+3 w   b   b   b
+2   b   b   b   b
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:23','turn-end',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   .   w   w
+5 w   w   .   .
+4   .   .   b   b
+3 w   b   b   .
+2   b   b   b   b
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:26','turn-start',[b=10 w=11 (-1)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   .   .   w
+5 w   w   .   w
+4   .   .   b   b
+3 w   b   b   .
+2   b   b   b   b
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:29','turn-end',[b=10 w=10 (+0)]
+8   .   .   w   w
+7 w   w   .   w
+6   w   .   b   w
+5 w   w   .   .
+4   .   .   b   .
+3 w   b   b   .
+2   b   b   b   b
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:34','turn-start',[b= 7 w=10 (-3)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   .   .   .
+3 w   b   b   .
+2   b   b   .   b
+1 b   b   W   .
+  a b c d e f g h
+'2017-08-07 11:27:36','turn-end',[b= 7 w=10 (-3)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   .   .   .
+3 w   b   b   b
+2   b   b   .   .
+1 b   b   W   .
+  a b c d e f g h
+'2017-08-07 11:27:39','turn-start',[b= 7 w=10 (-3)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   .   .   .
+3 w   b   b   b
+2   b   b   W   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:41','turn-end',[b= 7 w=10 (-3)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   .   b   .
+3 w   b   b   .
+2   b   b   W   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:45','turn-start',[b= 6 w=10 (-4)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   W   b   .
+3 w   b   .   .
+2   b   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:51','turn-end',[b= 6 w= 9 (-3)]
+8   .   .   w   w
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   b   .
+4   .   .   b   .
+3 w   .   .   .
+2   b   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:27:54','turn-start',[b= 6 w= 9 (-3)]
+8   .   .   .   w
+7 w   w   .   w
+6   w   .   .   w
+5 w   w   b   .
+4   .   .   b   .
+3 w   .   .   .
+2   b   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:06','turn-end',[b= 6 w= 9 (-3)]
+8   .   .   .   w
+7 w   w   .   w
+6   w   .   .   w
+5 w   w   b   .
+4   .   .   b   .
+3 w   b   .   .
+2   .   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:09','turn-start',[b= 6 w= 9 (-3)]
+8   .   .   .   w
+7 w   w   .   .
+6   w   .   w   w
+5 w   w   b   .
+4   .   .   b   .
+3 w   b   .   .
+2   .   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:11','turn-end',[b= 6 w= 8 (-2)]
+8   .   .   .   w
+7 w   w   .   b
+6   w   .   .   w
+5 w   w   .   .
+4   .   .   b   .
+3 w   b   .   .
+2   .   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:14','turn-start',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   w   w
+5 w   w   .   .
+4   .   .   b   .
+3 w   b   .   .
+2   .   b   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:16','turn-end',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   w   w
+5 w   w   .   .
+4   .   .   b   .
+3 w   b   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:19','turn-start',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   w
+4   .   .   b   .
+3 w   b   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:23','turn-end',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   w
+4   .   b   b   .
+3 w   .   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:26','turn-start',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   .   .
+4   .   b   b   w
+3 w   .   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:30','turn-end',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 w   w   b   .
+4   .   b   .   w
+3 w   .   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:32','turn-start',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   b   .
+4   w   b   .   w
+3 w   .   b   .
+2   .   .   .   .
+1 b   b   .   .
+  a b c d e f g h
+'2017-08-07 11:28:35','turn-end',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   b   .
+4   w   b   .   w
+3 w   .   b   .
+2   .   b   .   .
+1 b   .   .   .
+  a b c d e f g h
+'2017-08-07 11:28:38','turn-start',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   b   .
+4   w   b   .   .
+3 w   .   b   w
+2   .   b   .   .
+1 b   .   .   .
+  a b c d e f g h
+'2017-08-07 11:28:39','turn-end',[b= 5 w= 8 (-3)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   b   .
+4   w   b   .   .
+3 w   .   b   w
+2   b   b   .   .
+1 .   .   .   .
+  a b c d e f g h
+'2017-08-07 11:28:42','turn-start',[b= 4 w= 8 (-4)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   b   .
+4   w   b   .   .
+3 .   .   b   w
+2   .   b   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:28:43','turn-end',[b= 4 w= 8 (-4)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   b   w
+5 .   w   .   .
+4   w   b   .   .
+3 .   .   b   w
+2   .   b   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:28:46','turn-start',[b= 4 w= 8 (-4)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   b   w
+5 .   w   .   .
+4   w   b   .   .
+3 .   .   b   .
+2   .   b   w   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:28:52','turn-end',[b= 4 w= 8 (-4)]
+8   .   .   .   .
+7 w   w   b   .
+6   w   .   .   w
+5 .   w   .   .
+4   w   b   .   .
+3 .   .   b   .
+2   .   b   w   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:28:56','turn-start',[b= 4 w= 8 (-4)]
+8   .   .   .   .
+7 w   w   b   .
+6   w   .   .   w
+5 .   w   .   .
+4   w   b   .   .
+3 .   .   b   .
+2   .   b   .   .
+1 .   W   W   .
+  a b c d e f g h
+'2017-08-07 11:28:57','turn-end',[b= 4 w= 8 (-4)]
+8   .   B   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   .   .
+4   w   b   .   .
+3 .   .   b   .
+2   .   b   .   .
+1 .   W   W   .
+  a b c d e f g h
+'2017-08-07 11:29:00','turn-start',[b= 2 w= 8 (-6)]
+8   .   B   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   W   .
+4   w   .   .   .
+3 .   .   b   .
+2   .   .   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:29:03','turn-end',[b= 2 w= 8 (-6)]
+8   .   .   .   .
+7 w   w   B   .
+6   w   .   .   w
+5 .   w   W   .
+4   w   .   .   .
+3 .   .   b   .
+2   .   .   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:29:05','turn-start',[b= 2 w= 8 (-6)]
+8   .   .   .   .
+7 w   w   B   .
+6   w   .   W   w
+5 .   w   .   .
+4   w   .   .   .
+3 .   .   b   .
+2   .   .   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:29:08','turn-end',[b= 2 w= 7 (-5)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   w
+5 .   w   .   B
+4   w   .   .   .
+3 .   .   b   .
+2   .   .   .   .
+1 .   W   .   .
+  a b c d e f g h
+'2017-08-07 11:29:12','turn-start',[b= 0 w= 7 (-7)]
+8   .   .   .   .
+7 w   w   .   .
+6   w   .   .   .
+5 .   w   .   .
+4   w   .   .   .
+3 .   .   .   .
+2   .   w   .   .
+1 .   W   .   .
+  a b c d e f g h
